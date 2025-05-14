@@ -1,0 +1,19 @@
+{
+  "name": "hackathonskillslab",
+  "version": "1.0.0",
+  "description": "Project for Hackathon by NKEIVT Skillslab",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Springlezz/HackathonSkillslab.git"
+  },
+  "author": "pervie",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Springlezz/HackathonSkillslab/issues"
+  },
+  "homepage": "https://github.com/Springlezz/HackathonSkillslab#readme"
+}
