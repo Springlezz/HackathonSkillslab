@@ -33310,9 +33310,12 @@
 	  const openModal = () => setModalActive(true);
 	  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
 	    className: styles.header
-	  }, /*#__PURE__*/React.createElement("div", {
-	    className: styles.logo
-	  }, "\u041A\u0438\u043D\u043E\u0440\u0430\u0444"), /*#__PURE__*/React.createElement("div", {
+	  }, /*#__PURE__*/React.createElement("a", {
+	    className: styles.logo,
+	    href: "/"
+	  }, /*#__PURE__*/React.createElement("img", {
+	    src: "/icons/logo.svg"
+	  }), /*#__PURE__*/React.createElement("span", null, "\u0438\u043D\u043E\u0440\u0430\u0444")), /*#__PURE__*/React.createElement("div", {
 	    className: styles.search
 	  }, /*#__PURE__*/React.createElement("input", {
 	    type: "text",

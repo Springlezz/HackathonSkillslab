@@ -134,6 +134,17 @@ body {
 }
 
 .logo_app_byX {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  user-select: none;
+  text-decoration: none;
+}
+.logo_app_byX img {
+  height: 75%;
+  padding-bottom: 4px;
+}
+.logo_app_byX span {
   padding-right: 5px;
   color: #FFF;
   font-size: 1.5rem;

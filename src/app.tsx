@@ -10,7 +10,10 @@ export default function App() {
 
     return <>
         <div className={styles.header}>
-            <div className={styles.logo}>Кинораф</div>
+            <a className={styles.logo} href="/">
+                <img src="/icons/logo.svg" />
+                <span>инораф</span>
+            </a>
             <div className={styles.search}>
                 <input type="text" placeholder="Поиск..." />
             </div>
