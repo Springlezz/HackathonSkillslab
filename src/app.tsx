@@ -1,7 +1,5 @@
 import React, { useState }  from 'react';
-import styles from './app.scss';
-
-
+import './app.scss';
 
 function App() {
     const [modalActive, setModalActive] = useState(false);
