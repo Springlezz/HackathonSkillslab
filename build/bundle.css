@@ -116,6 +116,7 @@ body {
   position: fixed;
   top: 0;
   display: flex;
+  align-items: center;
   width: 100%;
   height: 50px;
   padding: 5px 10px;
@@ -124,6 +125,7 @@ body {
 }
 
 .logo_app_byX {
+  padding-right: 5px;
   color: #FFF;
   font-size: 1.5rem;
   font-weight: bold;
