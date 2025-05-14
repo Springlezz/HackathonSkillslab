@@ -6,11 +6,11 @@
 }
 * {
   box-sizing: border-box;
+  font-family: "Bounded-Regular";
 }
 
 body {
   margin: 0;
-  font-family: "Bounded-Regular";
   background-color: #EAE0D5;
   color: #3E342C;
 }
@@ -137,6 +137,7 @@ body {
   display: flex;
   align-items: center;
   height: 100%;
+  padding-right: 5px;
   user-select: none;
   text-decoration: none;
 }
@@ -145,7 +146,6 @@ body {
   padding-bottom: 4px;
 }
 .logo_app_byX span {
-  padding-right: 5px;
   color: #FFF;
   font-size: 1.5rem;
   font-weight: bold;
