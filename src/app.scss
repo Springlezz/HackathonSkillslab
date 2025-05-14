@@ -1,182 +1,55 @@
-.content {
-    color: red;
-    font-size: 20px;
-}
-
-* {
-    box-sizing: border-box;
-  }
-  
-  body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background-color: #eae0d5;
-    color: #3e342c;
-    padding: 0;
-  }
-  
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    background-color: #6c4d3b;
-    color: white;
-  }
-  
-  .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #fff;
-  }
-  
-  .search input {
-    background: #eae0d5;
-    border: 1px solid #cabdb2;
-    padding: 0.5rem;
-    color: #3e342c;
-    width: 100%;
-    max-width: 200px;
-    border-radius: 5px;
-    font-size: 1rem;
-  }
-  
-  main {
-    padding: 1rem 1rem 4rem 1rem;
-  }
-  
-  h2 {
-    margin-bottom: 0.75rem;
-    font-size: 1.1rem;
-    color: #3e342c;
-    border-left: 4px solid #8b5e3c;
-    padding-left: 0.5rem;
-  }
-  
-  .movies {
-    display: flex;
-    gap: 1rem;
-    overflow-x: auto;
-    padding-bottom: 1rem;
-    scrollbar-width: thin;
-  }
-  
-  .movie-card {
-    background-color: #ddd2c7;
-    border-radius: 8px;
-    overflow: hidden;
-    width: 140px;
-    height: 210px;
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
-    position: relative;
-    flex-shrink: 0;
-  }
-  
-  .movie-card::before {
-    content: '';
-    position: absolute;
-    top: -5px;
-    left: -5px;
-    right: -5px;
-    bottom: -5px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(108, 77, 59, 0.5);
-    z-index: -1;
-  }
-  
-  .movie-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 12px rgba(62, 52, 44, 0.2);
-  }
-  
-  .movie-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 8px;
-  }
-  
-  .movie-card .info {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(to bottom, rgba(108, 77, 59, 0.8), transparent);
-    padding: 0.4rem;
-    text-align: center;
-    font-size: 0.8rem;
-    color: #fff;
-  }
-  
-  .modal {
+.header {
     position: fixed;
     top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(62, 52, 44, 0.9);
-    display: none;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .modal.active {
     display: flex;
-  }
-  
-  .modal-content {
-    background: #ddd2c7;
-    padding: 1rem;
-    border-radius: 10px;
-    width: 90%;
-    max-width: 600px;
-    text-align: center;
-    box-shadow: 0 4px 12px rgba(62, 52, 44, 0.2);
-  }
-  
-  .modal video {
     width: 100%;
-    border-radius: 8px;
-  }
-  
-  .modal button {
-    margin-top: 1rem;
-    padding: 0.5rem 1rem;
-    background: #8b5e3c;
-    border: none;
+    height: 50px;
+    padding: 5px 10px;
+    background: #6c4d3b;
     color: white;
-    font-size: 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-  }
-  
-  .modal button:hover {
-    background: #2d251f;
-  }
-  
-  /* Мобильные стили */
-  @media (max-width: 600px) {
-    .movies {
-      gap: 0.75rem;
-    }
-  
-    .movie-card {
-      width: 120px;
-      height: 180px;
-    }
-  
-    .search input {
-      max-width: 100%;
-    }
-  
-    header {
-      padding: 0.75rem 1rem;
-    }
-  
-    .logo {
-      font-size: 1.2rem;
-    }
-  }
+}
+.logo {
+    color: #FFF;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.search {
+    flex-grow: 1;
+    text-align: center;
 
+    input {
+        width: 100%;
+        max-width: 500px;
+        height: 100%;
+        padding: 0.5rem;
+        background: #eae0d5;
+        border: 1px solid #cabdb2;
+        border-radius: 5px;
+        color: #3e342c;
+        font-size: 1rem;
+    }
+}
+
+.main {
+    width: 100%;
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+    padding-top: 50px;
+}
+
+.section-title {
+    margin: 0;
+    margin-top: 2rem;
+    padding-left: 0.5rem;
+    border-left: 4px solid #8b5e3c;
+    font-size: 1.1rem;
+    color: #3e342c;
+}
+
+// Мобильные стили
+@media (max-width: 600px) {
+    .logo {
+        font-size: 1.2rem;
+    }
+}
