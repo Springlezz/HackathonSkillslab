@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'Bounded-Regular';
+    src: url('fonts/Bounded-Regular.woff2'), format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+
 * {
     box-sizing: border-box;
 }
@@ -7,9 +14,3 @@ body {
     background-color: #EAE0D5;
     color: #3E342C;
 }
-@font-face {
-    font-family: 'Bounded-Regular';
-    src: url('public/Bounded-Regular.woff2'), format('woff2');
-    font-weight: 400;
-    font-style: normal;
-  }
