@@ -9,8 +9,7 @@ import postcss from 'rollup-plugin-postcss';
 export default {
     input: 'src/index.tsx',
     output: {
-        name: 'paint',
-        file: 'build/paint.js',
+        file: 'build/bundle.js',
         format: 'iife'
     },
     plugins: [

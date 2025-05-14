@@ -1,19 +1,31 @@
 {
-  "name": "hackathonskillslab",
-  "version": "1.0.0",
-  "description": "Project for Hackathon by NKEIVT Skillslab",
-  "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "rollup -c rollup.build.js",
+    "dev": "rollup -c rollup.dev.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Springlezz/HackathonSkillslab.git"
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
-  "author": "pervie",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Springlezz/HackathonSkillslab/issues"
-  },
-  "homepage": "https://github.com/Springlezz/HackathonSkillslab#readme"
+  "devDependencies": {
+    "@babel/core": "^7.23.5",
+    "@babel/preset-env": "^7.23.5",
+    "@babel/preset-react": "^7.23.3",
+    "@babel/preset-typescript": "^7.23.3",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-replace": "^5.0.5",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^11.1.5",
+    "@types/react": "^18.2.45",
+    "@types/react-dom": "^18.2.17",
+    "core-js": "^3.35.0",
+    "cssnano-preset-advanced": "^7.0.7",
+    "rollup": "^4.8.0",
+    "rollup-plugin-postcss": "^4.0.2",
+    "sass": "^1.88.0",
+    "sass-loader": "^13.3.2"
+  }
 }
