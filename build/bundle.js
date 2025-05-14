@@ -33260,7 +33260,6 @@
 
 	  // Горизонтальная прокрутка колесом мыши
 	  function onScroll(event) {
-	    console.log(event);
 	    event.currentTarget.scrollLeft += event.deltaY;
 	  }
 	  return /*#__PURE__*/React.createElement("div", {
@@ -33271,7 +33270,7 @@
 	    className: styles$2.card,
 	    onClick: openModal
 	  }, /*#__PURE__*/React.createElement("img", {
-	    src: `https://via.placeholder.com/160x240.png?text= Фильм+${id}`,
+	    src: `https://placehold.co/160x240.png?text=Фильм+${id}`,
 	    alt: `Фильм ${id}`
 	  }), /*#__PURE__*/React.createElement("div", {
 	    className: styles$2.info

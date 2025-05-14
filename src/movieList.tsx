@@ -14,7 +14,7 @@ export default function MovieList({ openModal }) {
             {movies.map(id => (
                 <div key={id} className={styles.card} onClick={openModal}>
                     <img
-                        src={`https://via.placeholder.com/160x240.png?text= Фильм+${id}`}
+                        src={`https://placehold.co/160x240.png?text=Фильм+${id}`}
                         alt={`Фильм ${id}`} />
                     <div className={styles.info}>Фильм {id}</div>
                 </div>
