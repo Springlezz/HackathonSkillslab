@@ -33257,8 +33257,15 @@
 	  openModal
 	}) {
 	  const movies = [1, 2, 3, 4, 5, 6, 7, 8];
+
+	  // Горизонтальная прокрутка колесом мыши
+	  function onScroll(event) {
+	    console.log(event);
+	    event.currentTarget.scrollLeft += event.deltaY;
+	  }
 	  return /*#__PURE__*/React.createElement("div", {
-	    className: styles$2.movies
+	    className: styles$2.movies,
+	    onWheel: onScroll
 	  }, movies.map(id => /*#__PURE__*/React.createElement("div", {
 	    key: id,
 	    className: styles$2.card,
