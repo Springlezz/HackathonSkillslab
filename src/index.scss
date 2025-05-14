@@ -1,6 +1,16 @@
-// Глобальные стили
-:global {
-    body {
-        margin: 0;
-    }
+@font-face {
+    font-family: 'Bounded-Regular';
+    src: url('fonts/Bounded-Regular.woff2'), format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    font-family: 'Bounded-Regular';
+    background-color: #EAE0D5;
+    color: #3E342C;
 }

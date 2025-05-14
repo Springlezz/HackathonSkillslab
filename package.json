@@ -2,10 +2,10 @@
   "type": "module",
   "scripts": {
     "build": "rollup -c rollup.build.js",
-    "dev": "rollup -c rollup.dev.js"
+    "dev": "rollup -c rollup.dev.js",
+    "start": "node server/server.js"
   },
   "dependencies": {
-    "@rollup/rollup-linux-x64-gnu": "^4.40.2",
     "express": "^5.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
