@@ -12,7 +12,7 @@ export default function App() {
         <div className={styles.header}>
             <a className={styles.logo} href="/">
                 <img src="/icons/logo.svg" />
-                <span>инораф</span>
+                <span>inoraf</span>
             </a>
             <div className={styles.search}>
                 <input type="text" placeholder="Поиск..." />
