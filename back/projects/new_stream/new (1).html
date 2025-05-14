@@ -1,0 +1,43 @@
+<video id="videoPlayer" controls width="640">
+  <source src="video_1080p.mp4" type="video/mp4" data-quality="1080p">
+</video>
+
+<select id="qualitySelector">
+  <option value="720p">720p</option>
+  <option value="1080p" selected>1080p</option>
+  <option value="4k">4K</option>
+</select>
+
+<select id="speedSelector">
+  <option value="0.5">0.5x</option>
+  <option value="1" selected>1x</option>
+  <option value="1.5">1.5x</option>
+  <option value="2">2x</option>
+</select>
+<script src="new (3).js"></script>
+<script type="module">
+import Hls from 'hls.js';
+
+const video = document.getElementById('video');
+const qualitySelector = document.getElementById('quality');
+
+const hls = new Hls();
+hls.loadSource('https://yourdomain.com/playlist.m3u8'); // HLS URL
+hls.attachMedia(video);
+
+hls.on(Hls.Events.MANIFEST_PARSED, () => {
+  const levels = hls.levels;
+
+  levels.forEach((level, index) => {
+    const label = `${level.height}p`;
+    const option = document.createElement('option');
+    option.value = index;
+    option.textContent = label;
+    qualitySelector.appendChild(option);
+  });
+
+  qualitySelector.addEventListener('change', () => {
+    hls.currentLevel = parseInt(qualitySelector.value); // -1 = auto
+  });
+});
+</script>
