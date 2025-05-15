@@ -42,7 +42,7 @@ async function fakeRequestApi(method: string, path: string, headers?: Record<str
                     title: `Фильм ${i + 1}`,
                     poster: `https://placehold.co/160x240.png?text=Фильм+${i + 1}`
                 }))
-            }
+            };
         case 'recommends':
             return {
                 success: true,
@@ -51,11 +51,11 @@ async function fakeRequestApi(method: string, path: string, headers?: Record<str
                     title: `Фильм ${i + 1}`,
                     poster: `https://placehold.co/160x240.png?text=Фильм+${i + 1}`
                 }))
-            }
+            };
         default:
             return {
                 success: false,
                 error: 'Not found'
-            }
+            };
     }
 };
