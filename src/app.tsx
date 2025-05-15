@@ -38,6 +38,14 @@ export default function App() {
             <MovieList movies={recommends} openModal={openModal} />
         </div>
 
+        <div className={styles.videoPlayer}>
+            <h2 className={styles.sectionTitle}>Видеоплеер</h2>
+            <video controls width="100%" height="auto">
+                <source src="/back/video.php?file=video.mp4" type="video/mp4" />
+                Ваш браузер не поддерживает воспроизведение видео.
+            </video>
+        </div>
+
         <Modal show={modalActive} setShow={setModalActive} />
     </>;
 }
