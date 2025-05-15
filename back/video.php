@@ -1,7 +1,7 @@
 <?php
 
 $filename = $_GET['file'] ?? 'video.mp4';
-$path = __DIR__ . "/videos/" . basename($filename);
+$path = __DIR__ . "/video/" . basename($filename);
 
 if (!file_exists($path)) {
     http_response_code(404);

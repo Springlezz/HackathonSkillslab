@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import MovieList from './movieList.tsx';
 import Modal from './modal.tsx';
 import styles from './app.scss';
@@ -20,6 +20,8 @@ export default function App() {
     const [popular, setPopular] = useState([]);
     const [recommends, setRecommends] = useState([]);
 
+    const videoRef = useRef(null);
+
     useEffect(() => {
         getApi('popular').then(({ success, popular }) => {
             if (success) setPopular(popular);
@@ -27,6 +29,21 @@ export default function App() {
         getApi('recommends').then(({ success, recommends }) => {
             if (success) setRecommends(recommends);
         });
+
+        fetch("/back/video.php?file=video.mp4")
+            .then(response => {
+                if (!response.ok) throw new Error("Network response was not ok");
+                return response.blob();
+            })
+            .then(blob => {
+                const url = URL.createObjectURL(blob);
+                if (videoRef.current) {
+                    (videoRef.current as HTMLVideoElement).src = url;
+                }
+            })
+            .catch(error => {
+                console.error("Ошибка:", error);
+            });
     }, []);
 
     return <>
@@ -59,7 +76,7 @@ export default function App() {
         <div className={styles.videoPlayer}>
             <h2 className={styles.sectionTitle}>Видеоплеер</h2>
             <video controls width="100%" height="auto">
-                <source src="/back/video.php?file=video.mp4" type="video/mp4" />
+                <source src="/video.mp4" type="video/mp4" />
                 Ваш браузер не поддерживает воспроизведение видео.
             </video>
         </div>
