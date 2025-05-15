@@ -1,43 +1,170 @@
-<video id="videoPlayer" controls width="640">
-  <source src="video_1080p.mp4" type="video/mp4" data-quality="1080p">
-</video>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Адаптивный видеоплеер</title>
+    <style>
+        .video-container {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        video {
+            width: 100%;
+            display: block;
+        }
+        .custom-controls {
+            position: absolute;
+            bottom: 40px;
+            right: 10px;
+            background: rgba(0,0,0,0.7);
+            padding: 10px;
+            border-radius: 5px;
+            display: none;
+        }
+        video:hover + .custom-controls, .custom-controls:hover {
+            display: block;
+        }
+        select, button {
+            padding: 5px;
+            margin: 0 5px;
+            background: #333;
+            color: white;
+            border: none;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="video-container">
+        <video id="videoPlayer" controls controlsList="nodownload">
+            <!-- Источник будет добавлен динамически -->
+        </video>
+        
+        <div class="custom-controls">
+            <select id="speedSelector">
+                <option value="0.5">0.5x</option>
+                <option value="1" selected>1x</option>
+                <option value="1.5">1.5x</option>
+                <option value="2">2x</option>
+            </select>
+            
+            <select id="qualitySelector">
+                <option value="auto" selected>Авто качество</option>
+                <option value="720p">720p</option>
+                <option value="1080p">1080p</option>
+                <option value="4k">4K</option>
+            </select>
+        </div>
+    </div>
 
-<select id="qualitySelector">
-  <option value="720p">720p</option>
-  <option value="1080p" selected>1080p</option>
-  <option value="4k">4K</option>
-</select>
+    <script>
+        const video = document.getElementById('videoPlayer');
+        const speedSelector = document.getElementById('speedSelector');
+        const qualitySelector = document.getElementById('qualitySelector');
 
-<select id="speedSelector">
-  <option value="0.5">0.5x</option>
-  <option value="1" selected>1x</option>
-  <option value="1.5">1.5x</option>
-  <option value="2">2x</option>
-</select>
-<script src="new (3).js"></script>
-<script type="module">
-import Hls from 'hls.js';
+        // 1. Инициализация плеера
+        async function initPlayer() {
+            const quality = await setAutoQuality();
+            changeVideoSource(quality);
+            
+            // Добавляем кнопку качества в стандартные элементы управления
+            addCustomControls();
+        }
 
-const video = document.getElementById('video');
-const qualitySelector = document.getElementById('quality');
+        // 2. Функция измерения скорости интернета
+        async function getDownloadSpeedMbps() {
+            const imageUrl = "https://via.placeholder.com/2000x2000.png";
+            const startTime = performance.now();
+            
+            try {
+                const response = await fetch(imageUrl + '?cache=' + Math.random());
+                const blob = await response.blob();
+                const endTime = performance.now();
+                
+                const duration = (endTime - startTime) / 1000;
+                const bitsLoaded = blob.size * 8;
+                const speedMbps = (bitsLoaded / duration / (1024 * 1024)).toFixed(2);
+                
+                console.log(`Скорость интернета: ${speedMbps} Mbps`);
+                return parseFloat(speedMbps);
+            } catch (error) {
+                console.error('Ошибка измерения скорости:', error);
+                return 4; // Среднее значение при ошибке
+            }
+        }
 
-const hls = new Hls();
-hls.loadSource('https://yourdomain.com/playlist.m3u8'); // HLS URL
-hls.attachMedia(video);
+        // 3. Автоматический выбор качества
+        async function setAutoQuality() {
+            const speed = await getDownloadSpeedMbps();
+            let quality;
+            
+            if (speed < 2) quality = '480p';
+            else if (speed < 4) quality = '720p';
+            else if (speed < 8) quality = '1080p';
+            else quality = '4k';
+            
+            console.log(`Автовыбор: ${quality}`);
+            return quality;
+        }
 
-hls.on(Hls.Events.MANIFEST_PARSED, () => {
-  const levels = hls.levels;
+        // 4. Изменение источника видео
+        function changeVideoSource(quality) {
+            const sources = {
+                '480p': 'video_480p.mp4',
+                '720p': 'video_720p.mp4',
+                '1080p': 'video_1080p.mp4',
+                '4k': 'video_4k.mp4'
+            };
+            
+            const currentTime = video.currentTime || 0;
+            const isPaused = video.paused;
+            
+            video.innerHTML = '';
+            const source = document.createElement('source');
+            source.src = sources[quality];
+            source.type = 'video/mp4';
+            video.appendChild(source);
+            
+            video.load();
+            
+            video.addEventListener('loadedmetadata', () => {
+                if (currentTime > 0) {
+                    video.currentTime = currentTime;
+                }
+                if (!isPaused) {
+                    video.play().catch(e => console.log('Автовоспроизведение:', e));
+                }
+            });
+            
+            updateQualityIndicator(quality);
+        }
 
-  levels.forEach((level, index) => {
-    const label = `${level.height}p`;
-    const option = document.createElement('option');
-    option.value = index;
-    option.textContent = label;
-    qualitySelector.appendChild(option);
-  });
+        // 5. Обновление индикатора качества
+        function updateQualityIndicator(quality) {
+            // Можно добавить визуальное отображение текущего качества
+            console.log(`Текущее качество: ${quality}`);
+        }
 
-  qualitySelector.addEventListener('change', () => {
-    hls.currentLevel = parseInt(qualitySelector.value); // -1 = auto
-  });
-});
-</script>
+        // 6. Добавление кастомных элементов управления
+        function addCustomControls() {
+            // Обработчики событий
+            speedSelector.addEventListener('change', () => {
+                video.playbackRate = parseFloat(speedSelector.value);
+            });
+            
+            qualitySelector.addEventListener('change', async () => {
+                const quality = qualitySelector.value === 'auto' 
+                    ? await setAutoQuality() 
+                    : qualitySelector.value;
+                
+                changeVideoSource(quality);
+            });
+        }
+
+        // 7. Запуск инициализации
+        document.addEventListener('DOMContentLoaded', initPlayer);
+    </script>
+</body>
+</html>
