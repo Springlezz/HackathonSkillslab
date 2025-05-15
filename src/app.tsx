@@ -9,7 +9,7 @@ import { loadStripe } from '@stripe/stripe-js';
 const stripePromise = loadStripe('pk_test_51ROswmQoWqQ4g3iBD9JIBJioKDibNd62H2QKbvjTZPqrDbMhTFMgHIoTdkgUMIUolZ1rg19Y2cD3NUM0vRNZ8Vjw006BloLVfr');
 
 async function fetchClientSecret() {
-    const data = await fetch('/create-checkout-session', { method: 'POST' }).then(res => res.json());
+    const data = await fetch('http://localhost:8000/create-checkout-session', { method: 'POST' }).then(res => res.json());
     return data.checkoutSessionClientSecret;
 }
 
