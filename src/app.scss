@@ -11,10 +11,22 @@
     color: white;
 }
 .logo {
+    display: flex;
+    align-items: center;
+    height: 100%;
     padding-right: 5px;
-    color: #FFF;
-    font-size: 1.5rem;
-    font-weight: bold;
+    user-select: none;
+    text-decoration: none;
+
+    img {
+        height: 75%;
+        padding-bottom: 4px;
+    }
+    span {
+        color: #FFF;
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
 }
 .search {
     flex-grow: 1;

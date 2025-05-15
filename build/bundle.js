@@ -33254,10 +33254,9 @@
 	var styles$2 = {"movies":"movies_movieList_bC9","card":"card_movieList_jkr","info":"info_movieList_njn"};
 
 	function MovieList({
+	  movies,
 	  openModal
 	}) {
-	  const movies = [1, 2, 3, 4, 5, 6, 7, 8];
-
 	  // Горизонтальная прокрутка колесом мыши
 	  function onScroll(event) {
 	    event.currentTarget.scrollLeft += event.deltaY;
@@ -33265,16 +33264,16 @@
 	  return /*#__PURE__*/React.createElement("div", {
 	    className: styles$2.movies,
 	    onWheel: onScroll
-	  }, movies.map(id => /*#__PURE__*/React.createElement("div", {
-	    key: id,
+	  }, movies.map(movie => /*#__PURE__*/React.createElement("div", {
+	    key: movie.id,
 	    className: styles$2.card,
 	    onClick: openModal
 	  }, /*#__PURE__*/React.createElement("img", {
-	    src: `https://placehold.co/160x240.png?text=Фильм+${id}`,
-	    alt: `Фильм ${id}`
+	    src: movie.poster,
+	    alt: movie.title
 	  }), /*#__PURE__*/React.createElement("div", {
 	    className: styles$2.info
-	  }, "\u0424\u0438\u043B\u044C\u043C ", id))));
+	  }, movie.title))));
 	}
 
 	var styles$1 = {"modal":"modal_modal_L76","show":"show_modal_wiy","content":"content_modal_I6w"};
@@ -33305,14 +33304,72 @@
 
 	var styles = {"header":"header_app_8Hd","logo":"logo_app_byX","search":"search_app_3sr","main":"main_app_D0Z","sectionTitle":"section-title_app_PyV"};
 
+	async function getApi(path) {
+	  // return requestApi('GET', path);
+	  return fakeRequestApi('GET', path);
+	}
+
+	// Fake API
+	async function fakeRequestApi(method, path, headers, body) {
+	  await new Promise(resolve => setTimeout(resolve, 300));
+	  switch (path) {
+	    case 'popular':
+	      return {
+	        success: true,
+	        popular: Array.from({
+	          length: 10
+	        }, (_, i) => ({
+	          id: i + 1,
+	          title: `Фильм ${i + 1}`,
+	          poster: `https://placehold.co/160x240.png?text=Фильм+${i + 1}`
+	        }))
+	      };
+	    case 'recommends':
+	      return {
+	        success: true,
+	        recommends: Array.from({
+	          length: 10
+	        }, (_, i) => ({
+	          id: i + 1,
+	          title: `Фильм ${i + 1}`,
+	          poster: `https://placehold.co/160x240.png?text=Фильм+${i + 1}`
+	        }))
+	      };
+	    default:
+	      return {
+	        success: false,
+	        error: 'Not found'
+	      };
+	  }
+	}
+
 	function App() {
 	  const [modalActive, setModalActive] = reactExports.useState(false);
 	  const openModal = () => setModalActive(true);
+	  const [popular, setPopular] = reactExports.useState([]);
+	  const [recommends, setRecommends] = reactExports.useState([]);
+	  reactExports.useEffect(() => {
+	    getApi('popular').then(({
+	      success,
+	      popular
+	    }) => {
+	      if (success) setPopular(popular);
+	    });
+	    getApi('recommends').then(({
+	      success,
+	      recommends
+	    }) => {
+	      if (success) setRecommends(recommends);
+	    });
+	  }, []);
 	  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
 	    className: styles.header
-	  }, /*#__PURE__*/React.createElement("div", {
-	    className: styles.logo
-	  }, "\u041A\u0438\u043D\u043E\u0440\u0430\u0444"), /*#__PURE__*/React.createElement("div", {
+	  }, /*#__PURE__*/React.createElement("a", {
+	    className: styles.logo,
+	    href: "/"
+	  }, /*#__PURE__*/React.createElement("img", {
+	    src: "/icons/logo.svg"
+	  }), /*#__PURE__*/React.createElement("span", null, "inoraf")), /*#__PURE__*/React.createElement("div", {
 	    className: styles.search
 	  }, /*#__PURE__*/React.createElement("input", {
 	    type: "text",
@@ -33322,10 +33379,12 @@
 	  }, /*#__PURE__*/React.createElement("h2", {
 	    className: styles.sectionTitle
 	  }, "\u041F\u043E\u043F\u0443\u043B\u044F\u0440\u043D\u044B\u0435 \u0444\u0438\u043B\u044C\u043C\u044B"), /*#__PURE__*/React.createElement(MovieList, {
+	    movies: popular,
 	    openModal: openModal
 	  }), /*#__PURE__*/React.createElement("h2", {
 	    className: styles.sectionTitle
 	  }, "\u0420\u0435\u043A\u043E\u043C\u0435\u043D\u0434\u0430\u0446\u0438\u0438"), /*#__PURE__*/React.createElement(MovieList, {
+	    movies: recommends,
 	    openModal: openModal
 	  })), /*#__PURE__*/React.createElement(Modal, {
 	    show: modalActive,

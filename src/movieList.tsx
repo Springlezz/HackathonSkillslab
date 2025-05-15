@@ -1,9 +1,13 @@
 import React from 'react';
 import styles from './movieList.scss';
 
-export default function MovieList({ openModal }) {
-    const movies = [1, 2, 3, 4, 5, 6, 7, 8];
+interface Movie {
+    id: number;
+    title: string;
+    poster: string;
+}
 
+export default function MovieList({ movies, openModal }: { movies: Movie[]; openModal: () => void; }) {
     // Горизонтальная прокрутка колесом мыши
     function onScroll(event: React.WheelEvent<HTMLDivElement>) {
         event.currentTarget.scrollLeft += event.deltaY;
@@ -11,12 +15,12 @@ export default function MovieList({ openModal }) {
 
     return (
         <div className={styles.movies} onWheel={onScroll}>
-            {movies.map(id => (
-                <div key={id} className={styles.card} onClick={openModal}>
+            {movies.map(movie => (
+                <div key={movie.id} className={styles.card} onClick={openModal}>
                     <img
-                        src={`https://placehold.co/160x240.png?text=Фильм+${id}`}
-                        alt={`Фильм ${id}`} />
-                    <div className={styles.info}>Фильм {id}</div>
+                        src={movie.poster}
+                        alt={movie.title} />
+                    <div className={styles.info}>{movie.title}</div>
                 </div>
             ))}
         </div>
