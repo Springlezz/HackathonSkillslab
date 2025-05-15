@@ -84,14 +84,8 @@
 }
 
 // Мобильные стили
-@media (max-width: 600px) {
-    .logo {
-        font-size: 1.2rem;
+@media (max-width: 500px) {
+    .logo span {
+        display: none;
     }
-}
-@font-face {
-    font-family: 'Bounded-Regular';
-    src: url('public/Bounded-Regular.woff2'), format('woff2');
-    font-weight: 400;
-    font-style: normal;
 }
