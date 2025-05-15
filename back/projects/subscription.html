@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Подписка | inoraf</title>
+    <link rel="stylesheet" href="/build/bundle.css">
+</head>
+<body>
+    <header class="header">
+        <a class="logo" href="/">
+            <img src="/icons/logo.svg" alt="inoraf">
+            <span>inoraf</span>
+        </a>
+        <div class="search">
+            <input type="text" placeholder="Поиск...">
+        </div>
+        <div class="subscription-button">
+            <button onclick="location.href='/subscription'">Купить подписку</button>
+        </div>
+    </header>
+    
+    <main class="subscription-page">
+        <h1>Покупка подписки</h1>
+        <p>Выберите тарифный план:</p>
+        <div class="plans">
+            <div class="plan">
+                <h2>Базовый</h2>
+                <p>199₽/мес</p>
+                <button id="buy-basic">Купить</button>
+            </div>
+            <div class="plan">
+                <h2>Премиум</h2>
+                <p>499₽/мес</p>
+                <button id="buy-premium">Купить</button>
+            </div>
+        </div>
+    </main>
+    
+    <script>
+        document.getElementById('buy-basic').addEventListener('click', () => {
+            alert('Вы выбрали Базовый план');
+        });
+        
+        document.getElementById('buy-premium').addEventListener('click', () => {
+            alert('Вы выбрали Премиум план');
+        });
+    </script>
+</body>
+</html>

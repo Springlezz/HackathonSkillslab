@@ -29,6 +29,9 @@ export default function App() {
             <div className={styles.search}>
                 <input type="text" placeholder="Поиск..." />
             </div>
+            <div className={styles.subscriptionButton}>
+                <button onClick={() => window.location.href = '/subscription'}>Купить подписку</button>
+            </div>
         </div>
 
         <div className={styles.main}>
