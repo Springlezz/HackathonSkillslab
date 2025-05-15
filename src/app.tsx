@@ -3,6 +3,15 @@ import MovieList from './movieList.tsx';
 import Modal from './modal.tsx';
 import styles from './app.scss';
 import { getApi } from './api.ts';
+import { CheckoutProvider, PaymentElement } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+
+const stripePromise = loadStripe('pk_test_51ROswmQoWqQ4g3iBD9JIBJioKDibNd62H2QKbvjTZPqrDbMhTFMgHIoTdkgUMIUolZ1rg19Y2cD3NUM0vRNZ8Vjw006BloLVfr');
+
+async function fetchClientSecret() {
+    const data = await fetch('/create-checkout-session', { method: 'POST' }).then(res => res.json());
+    return data.checkoutSessionClientSecret;
+}
 
 export default function App() {
     const [modalActive, setModalActive] = useState(false);
@@ -21,6 +30,9 @@ export default function App() {
     }, []);
 
     return <>
+        <CheckoutProvider stripe={stripePromise} options={{ fetchClientSecret }}>
+            <PaymentElement />
+        </CheckoutProvider>
         <div className={styles.header}>
             <a className={styles.logo} href="/">
                 <img src="/icons/logo.svg" />
@@ -30,7 +42,7 @@ export default function App() {
                 <input type="text" placeholder="Поиск..." />
             </div>
             <div className={styles.subscriptionButton}>
-                <button onClick={() => window.location.href = '/subscription'}>Купить подписку</button>
+                <button onClick={() => { }}>Купить подписку</button>
             </div>
             <div className={styles.subscriptionButton}>
                 <button>Войти</button>
